@@ -143,7 +143,7 @@ Problems found
 --------------
 1). If user is called directly like "./user 5" the PPID will be random, 
 because the fork which is located in oss will not be made.
-2). opsys.cs.umsl.edu will now allow you to link your github account for online virtual repository.
+2). opsys.cs.umsl.edu will not allow you to link your github account for online virtual repository.
     You can not verify your account as of August, 2021. My "git repository" is opsys git commits.
     These can be accessed by "git log" under my personal opsys account. You can also access the same files
     on gitlab. All github commits come from copied opsys files that were simply pushed to github for your visual.
@@ -153,7 +153,7 @@ Git Repositories
 ----------------
 1). opsys.cs.umsl.edu
     A). Type: "git log" under my opsys profile to view online local repository commits.
-        (NOTE: opsys.cs.umsl.edu will now allow you to link your github account for online virtual repository.
+        (NOTE: opsys.cs.umsl.edu will not allow you to link your github account for online virtual repository.
         You can not verify your account as of August, 2021.)
 		
 	Git Commit Log on Opsys
