@@ -155,5 +155,52 @@ Git Repositories
     A). Type: "git log" under my opsys profile to view online local repository commits.
         (NOTE: opsys.cs.umsl.edu will now allow you to link your github account for online virtual repository.
         You can not verify your account as of August, 2021.)
+		
+	Git Commit Log on Opsys
+	-----------------------
+	commit c5a1af6688bc58af61cd8cc6f47d0cfa98a9e3db (HEAD -> main)
+	Author: pschumer93 <pschumer81493@hotmail.com>
+	Date:   Mon Feb 5 23:26:53 2024 -0600
+
+		EVERYTHING DONE
+
+	commit 612a0bd04b64af873d6ba5274c897e5ad4b2f5e7
+	Author: pschumer93 <pschumer81493@hotmail.com>
+	Date:   Mon Feb 5 23:05:36 2024 -0600
+
+		oss.c is DONE. user.c is DONE. Makefile is DONE. readme.me is DONE.
+
+	commit d9ec92cb9e8d661577c37634e49f1a5a3d21bb35
+	Author: pschumer93 <pschumer81493@hotmail.com>
+	Date:   Mon Feb 5 12:23:10 2024 -0600
+
+		oss.c is DONE. user.c is DONE. Makefile is DONE. NEED to work on readme.md now.
+
+	commit d20810ef92dac493c610f03eaedb1534e39fce83
+	Author: pschumer93 <pschumer81493@hotmail.com>
+	Date:   Mon Feb 5 11:03:15 2024 -0600
+
+		Fixed user.c
+
+	commit 5fb19aab5df95ffa4a1cd80d3ce248ae5a838923
+	Author: pschumer93 <pschumer81493@hotmail.com>
+	Date:   Sun Feb 4 17:48:46 2024 -0600
+
+		Makefile done. User is done. readme.me is almost done.
+
+	commit ca23af423ba63cc8273d980e454c0abcf405596b
+	Author: pschumer93 <pschumer81493@hotmail.com>
+	Date:   Fri Feb 2 23:07:43 2024 -0600
+
+    Second Commit
+
+	commit 5d8b9fdd8254e47bf194c09966d625fc936d9203
+	Author: Phillip Schumer <schumer@opsys.cs.umsl.edu>
+	Date:   Fri Feb 2 21:27:06 2024 -0600
+
+    First commit
+
 2). Github
     A). Type: https://github.com/pschumer93/schumer.1
+	
+	
