@@ -1,10 +1,10 @@
-#Project_1
+#Project_2
 #Phillip Schumer
 #CMP SCI 4760
 #SPRING 2024
 
 -------------------
-Project 1: Overview
+Project 2: Overview
 -------------------
 THIS PROJECT WAS WRITTEN IN C LANGUAGE.
 Write a Makefile to compile two source files into two separate executables. One of the executables
@@ -17,7 +17,7 @@ The user executable is never executed directly. Instead, oss will be launching t
  This required us to use the "all" command in your makefile.
 
 ------------
-User Process
+Worker Process
 ------------
 The user will be called by oss, but can directly be called by the command line.
 This command line executable will take in two  command line arguments; 

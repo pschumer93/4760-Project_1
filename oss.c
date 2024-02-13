@@ -76,8 +76,8 @@ int main(int argc, char *argv[])
             // If fork sucess.
             if (pid == 0)
             {
-                // Call User Process with iter (argv[6]).
-                execl("./user", "user", argv[6], NULL);
+                // Call Worker Process with iter (argv[6]).
+                execl("./worker", "worker", argv[6], NULL);
                 printf("Execution Failed\n");
                 exit(EXIT_FAILURE);
             }
