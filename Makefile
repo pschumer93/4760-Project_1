@@ -1,6 +1,6 @@
 CC      = gcc -g3
 CFLAGS  = -g3
-TARGET1 = user
+TARGET1 = worker
 TARGET2 = oss
 
 OBJS1   = worker.o

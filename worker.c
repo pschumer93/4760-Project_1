@@ -1,40 +1,73 @@
-// Project_2
-// Phillip Schumer
-// CMP SCI 4760
-// Spring 2024
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/ipc.h>
+#include <sys/shm.h>
 
-#include<unistd.h>
-#include<sys/types.h>
-#include<stdio.h>
-#include<stdlib.h>
+#define SHM_SIZE 1024
 
-//Process OSS
-int main(int argc, char** argv)
+typedef struct
 {
-                /* -size = the number of iterations passed to user in argv[1].
-                   -argv[1] will be passed as a string.
-                   -argv[1] must be convertd to int.*/
+   int seconds;
+   int nanoseconds;
+}
+Clock;
 
-                int size = atoi(argv[1]);
-                for(int i = 1; i <= size; i++)
-                {
-                        // Print the PID and PPID before sleeping
-                        printf("USER PID: %d ",getpid());
-                        printf("USER PPID: %d ",getppid());
-                        /* NOTE: If called directly like "./user 5" the PPID will be random,
-                           because the fork which is located in oss. */
-                        printf("Iteration: %d before sleeping\n", i);
+int main(int argc, char**argv)
+{
+   key_t key = ftok(".", 's');
+   int shmid = shmget(key, SHM_SIZE, 0666);
+   if (shmid == -1)
+   {
+      perror("shmget");
+      exit(EXIT_FAILURE);
+   }
+   Clock *clock = (Clock *)shmat(shmid, NULL, 0);
+   if(clock == (Clock *)(-1))
+   {
+      perror("shmat");
+      exit(EXIT_FAILURE);
+   }
+   //int secondsPassed = atoi(argv[1]);
+   //int nanosecondsPassed = atoi(argv[2]);
+   int secondsPassed = 5;
+   int nanosecondsPassed = 50000;
 
-                        // Sleep for 1 second
-                        sleep(1);
+   int seconds = clock->seconds;
+   int nanoseconds = clock->nanoseconds;
 
-                        // Print the PID and PPID after sleeping.
-                        printf("USER PID: %d ",getpid());
-                        printf("USER PPID: %d ",getppid());
-                        /* NOTE: If called directly like "./user 5" the PPID will be random,
-                           because the fork which is located in oss. */
-                        printf("Iteration: %d after sleeping\n", i);
-                }
-               
-                return EXIT_SUCCESS;
+   int terminationSeconds = secondsPassed + clock->seconds;
+   int terminationNanoseconds = nanosecondsPassed + clock->nanoseconds;
+   int totalTermination = terminationSeconds + terminationNanoseconds;
+    
+   int i;
+   printf("Worker PID: %d PPID: %d SysClockSec: %d SysClockNano: %d ", getpid(), getppid(),  clock->seconds, clock->nanoseconds);
+   printf("TermTimeS: %d, TermTimeNano: %d\n", terminationSeconds, terminationNanoseconds);
+   printf("--Just Starting\n\n");
+   sleep(1);
+   clock->seconds++;
+   for(i = clock->seconds; i <= terminationSeconds; i++)
+   {
+      if(i == terminationSeconds)
+      {
+         printf("Worker PID: %d PPID: %d SysClockSec: %d SysClockNano: %d ", getpid(), getppid(),  clock->seconds, clock->nanoseconds);
+         printf("TermTimeS: %d, TermTimeNano: %d\n", terminationSeconds, terminationNanoseconds);
+         printf("--%d seconds have passed since starting\n\n",i );
+         clock->seconds++;
+         printf("Worker PID: %d PPID: %d SysClockSec: %d SysClockNano: %d ", getpid(), getppid(),  clock->seconds, clock->nanoseconds);
+         printf("TermTimeS: %d, TermTimeNano: %d\n", terminationSeconds, terminationNanoseconds);
+         printf("--Terminating\n");
+        }
+        if(i >= 1 && i < terminationSeconds)
+        {
+            printf("Worker PID: %d PPID: %d SysClockSec: %d SysClockNano: %d ", getpid(), getppid(),  clock->seconds, clock->nanoseconds);
+            printf("TermTimeS: %d, TermTimeNano: %d\n", terminationSeconds, terminationNanoseconds);
+            printf("--%d seconds have passed since starting\n\n",i );
+            sleep(1);
+            clock->seconds++;
+        }
+   }
+   shmdt(clock);
+   return EXIT_SUCCESS;
 }
